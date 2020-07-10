@@ -1,0 +1,9 @@
+ip access-list {{ type }} {{ id }}
+{% for ace in aces %}
+ {% if ace.host %}
+ {{ ace.action }} host {{ ace.host }} 
+ {% elif ace.network %}
+ {{ ace.action }} {{ace.network}} {{ace.mask}}
+ {% endif %}
+{% endfor %}
+

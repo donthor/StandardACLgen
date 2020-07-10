@@ -1,0 +1,11 @@
+type: standard
+id: 1
+aces:
+ - host: 10.1.1.1
+   action: permit
+ - network: 10.1.2.0
+   mask: 0.0.0.255
+   action: permit
+ - host: 172.16.1.1
+   action: deny
+
