@@ -1,9 +1,13 @@
 ip access-list {{ type }} {{ id }}
 {% for ace in aces %}
- {% if ace.host %}
- {{ ace.action }} host {{ ace.host }} 
+ {% if ace.host and ace.log %}
+ {{ ace.action }} host {{ ace.host }} log
+ {% elif ace.host %}
+ {{ ace.action }} host {{ ace.host }}
+ {% elif ace.network and ace.log %}
+ {{ ace.action }} {{ace.network}} log
  {% elif ace.network %}
- {{ ace.action }} {{ace.network}} {{ace.mask}}
+ {{ ace.action }} {{ace.network}}
  {% endif %}
 {% endfor %}
 
